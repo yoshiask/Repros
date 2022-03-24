@@ -6,24 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
 
-    <Grid>
-        <ItemsControl ItemsSource="{x:Bind Models}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Spacing="20"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate x:DataType="local:Model">
-                    <StackPanel Spacing="8">
-                        <TextBlock Style="{ThemeResource NavigationViewItemHeaderTextStyle}" Text="{x:Bind Title}" />
-                        <ContentControl Content="{x:Bind Value}" ContentTemplateSelector="{StaticResource DefaultTestTemplateSelector}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+    <Grid x:Name="RootGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+          Background="Transparent">
+        <Button x:Name="CaptureButton" Content="Capture" Click="CaptureButton_Click"/>
     </Grid>
     
 </Page>

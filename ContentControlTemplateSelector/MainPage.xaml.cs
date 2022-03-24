@@ -6,12 +6,17 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
+using Windows.Graphics.Imaging;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -26,48 +31,43 @@ namespace ContentControlTemplateSelector
         public MainPage()
         {
             this.InitializeComponent();
-
-            Models = new ObservableCollection<Model>
-            {
-                new Model
-                {
-                    Title = "TestA",
-                    Value = "Testing string values"
-                },
-                new Model
-                {
-                    Title = "DateTime test",
-                    Value = DateTime.Now
-                },
-                new Model
-                {
-                    Title = "DateTimeOffset test",
-                    Value = DateTimeOffset.Now
-                },
-                new Model
-                {
-                    Title = "Just a link",
-                    Value = new Uri("https://github.com/ZuneDev")
-                },
-                new Model
-                {
-                    Title = "Many arbitrary objects",
-                    Value = new List<object>
-                    {
-                        "Element0", "Element1", new DateTime(1, 1, 1)
-                    }
-                },
-            };
         }
 
-        public ObservableCollection<Model> Models
+        private async void CaptureButton_Click(object sender, RoutedEventArgs e)
         {
-            get => (ObservableCollection<Model>)GetValue(ModelsProperty);
-            set => SetValue(ModelsProperty, value);
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
+            await renderTargetBitmap.RenderAsync(Window.Current.Content);
+            var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+
+            var savePicker = new FileSavePicker();
+            savePicker.DefaultFileExtension = ".png";
+            savePicker.FileTypeChoices.Add(".png", new List<string> { ".png" });
+            savePicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            savePicker.SuggestedFileName = "CapturedHostBackdropAcrylic.png";
+
+            // Prompt the user to select a file
+            var saveFile = await savePicker.PickSaveFileAsync();
+
+            // Verify the user selected a file
+            if (saveFile == null)
+                return;
+
+            // Encode the image to the selected file on disk
+            using (var fileStream = await saveFile.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, fileStream);
+
+                encoder.SetPixelData(
+                    BitmapPixelFormat.Bgra8,
+                    BitmapAlphaMode.Ignore,
+                    (uint)renderTargetBitmap.PixelWidth,
+                    (uint)renderTargetBitmap.PixelHeight,
+                    DisplayInformation.GetForCurrentView().LogicalDpi,
+                    DisplayInformation.GetForCurrentView().LogicalDpi,
+                    pixelBuffer.ToArray());
+
+                await encoder.FlushAsync();
+            }
         }
-        public static readonly DependencyProperty ModelsProperty = DependencyProperty.Register(
-            nameof(Models), typeof(ObservableCollection<Model>), typeof(MainPage), new PropertyMetadata(null));
-
-
     }
 }
