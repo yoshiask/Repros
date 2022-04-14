@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32120.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentControlTemplateSelector", "ContentControlTemplateSelector\ContentControlTemplateSelector.csproj", "{221CB40D-31E9-40E3-988A-A401DD8FA882}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiWinUICrash", "MauiWinUICrash\MauiWinUICrash.csproj", "{EAC6EA84-D807-489D-9E8E-58D376364404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiWinUICrash", "MauiWinUICrash\MauiWinUICrash.csproj", "{EAC6EA84-D807-489D-9E8E-58D376364404}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmToolkitSourceGen", "MvvmToolkitSourceGen\MvvmToolkitSourceGen.csproj", "{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,26 @@ Global
 		{EAC6EA84-D807-489D-9E8E-58D376364404}.Release|x86.ActiveCfg = Release|Any CPU
 		{EAC6EA84-D807-489D-9E8E-58D376364404}.Release|x86.Build.0 = Release|Any CPU
 		{EAC6EA84-D807-489D-9E8E-58D376364404}.Release|x86.Deploy.0 = Release|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Debug|ARM.Build.0 = Debug|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Debug|x64.Build.0 = Debug|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Debug|x86.Build.0 = Debug|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Release|ARM.Build.0 = Release|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Release|ARM64.Build.0 = Release|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Release|x64.ActiveCfg = Release|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Release|x64.Build.0 = Release|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Release|x86.ActiveCfg = Release|Any CPU
+		{A7BC7B89-6669-4EE5-B31C-3B6AA0A1A317}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
