@@ -30,16 +30,21 @@ namespace WinAppSdk
             this.InitializeComponent();
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private async void myButton_Click(object sender, RoutedEventArgs e)
         {
-            FileInfo file = new(Path.Combine(ApplicationData.Current.LocalFolder.Path, "Test.txt"));
+            FileInfo file = new(Path.Combine(ApplicationData.Current.LocalFolder.Path, "SystemIO.txt"));
             if (file.Exists)
                 file.Delete();
             
-            File.WriteAllText(file.FullName, "Howdy from WinUI 3 Desktop");
+            File.WriteAllText(file.FullName, "Howdy from WinUI 3 Desktop using System.IO");
             file.Refresh();
 
             Debug.WriteLine($"File attributes: {file.Attributes}");
+
+            var file2 = await ApplicationData.Current.LocalFolder.CreateFileAsync("StorageFile.txt", CreationCollisionOption.ReplaceExisting);
+            using var stream = await file2.OpenStreamForWriteAsync();
+            using StreamWriter writer = new(stream);
+            writer.Write("Howdy from WinUI 3 Desktop using StorageFile");
         }
     }
 }
