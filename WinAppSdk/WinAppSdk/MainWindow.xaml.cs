@@ -7,11 +7,13 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,7 +32,14 @@ namespace WinAppSdk
 
         private void myButton_Click(object sender, RoutedEventArgs e)
         {
-            myButton.Content = "Clicked";
+            FileInfo file = new(Path.Combine(ApplicationData.Current.LocalFolder.Path, "Test.txt"));
+            if (file.Exists)
+                file.Delete();
+            
+            File.WriteAllText(file.FullName, "Howdy from WinUI 3 Desktop");
+            file.Refresh();
+
+            Debug.WriteLine($"File attributes: {file.Attributes}");
         }
     }
 }
